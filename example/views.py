@@ -12,7 +12,6 @@ def example_view(request):
     )
 
     if request.method == "POST":
-        # Item formset
         item_form = forms.ItemForm(request.POST, request.FILES, prefix='item')
         addition_formset = AdditionFormset(request.POST, request.FILES, instance=item, prefix='addition')
 

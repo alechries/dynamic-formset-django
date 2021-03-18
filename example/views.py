@@ -29,7 +29,7 @@ def example_view(request):
 
     return render(
         request=request,
-        template_name='Example.html',
+        template_name='example.html',
         context={
             'form': item_form,
             'formset': addition_formset,

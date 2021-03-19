@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
 from . import forms, models
 
@@ -28,14 +28,16 @@ def example_view(request):
                 addition.item = item
                 addition.save()
 
+        return redirect('example')
+
     else:
 
         item_form = forms.ItemForm(instance=item, prefix='item')
         addition_formset = AdditionFormset(instance=item, prefix='addition')
 
-    return render(
-        request, 'example.html',
-        context={
-            'form': item_form,
-            'formset': addition_formset,
-        })
+        return render(
+            request, 'example.html',
+            context={
+                'form': item_form,
+                'formset': addition_formset,
+            })

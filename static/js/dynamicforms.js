@@ -12,6 +12,9 @@ function cloneMore(selector, type) {
     $('#id_' + type + '-TOTAL_FORMS').val(total);
     newElement.find('.addition-counter').text(total);
     $(selector).after(newElement);
+
+    height = document.body.scrollHeight;
+    window.scrollTo(0, height);
 }
 
 function delForm(btn,) {

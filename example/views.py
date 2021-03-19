@@ -14,7 +14,7 @@ def example_view(request):
         min_num=addition_with_item_count,
         max_num=addition_with_item_count,
     )
-    print(models.Addition.objects.filter(item=item).count())
+
     if request.method == "POST":
 
         item_form = forms.ItemForm(request.POST, request.FILES, prefix='item')

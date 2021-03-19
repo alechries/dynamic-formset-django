@@ -1,13 +1,16 @@
 function delForm(btn, selector, type) {
     $(btn).parents(selector).remove();
     var forms = $(selector);
-    alert(forms.html)
     $('#id_' + type + '-TOTAL_FORMS').val(forms.length);
+
     for (var i=0, formCount=forms.length; i<formCount; i++) {
-        $(forms.get(i)).children().not(':last').children().each(function() {
-    	        var name = $(this).attr('name', '-' + (i-1) + '-');
-                var id = 'id_' + name;
+
+        element = $(forms.get(i));
+        element.find(':input').each(function() {
+            var name = $(this).attr('name', '-' + i + '-');
+            var id = 'id_' + name;
         });
+        element.find('.addition-counter').text(i);
     }
     return false;
 }
@@ -34,4 +37,3 @@ function addForm(selector, type) {
     height = document.body.scrollHeight;
     window.scrollTo(0, height);
 }
-

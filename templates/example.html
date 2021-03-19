@@ -24,12 +24,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <section class="content">
     <div class="container-fluid">
         <div class="card-header">
-            <h3 class="card-title"><b>Dynamic Formset</b></h3>
+            <h3 class="card-title"><b>Dynamic Formset Example</b></h3>
         </div><!-- /.card-header -->
         <div class="card card-info card-outline">
             <form method="POST" class="form-group" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div>
+                <div class="element-margin">
                     <h4>Item</h4>
                     <div class="form-group">
                         <div class="d-flex flex-column field">
@@ -38,11 +38,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="element-margin">
                     <div class="d-flex flex-column justify-content-center">
                         {{ formset.management_form }}
                         {% for form in formset %}
-
                         <h4>Addition {{ forloop.counter }}</h4>
                         <div class="form-group">
                             <div class="d-flex flex-column field">
@@ -54,6 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="d-flex flex-column field">
                                 <label for="DescriptionInput">Image</label>
                                 {{ form.image }}
+                                <img src="{% static 'img/no_icon.png' %}" alt="..." class="rounded element-margin" height="180" width="180">
                             </div>
                         </div>
                         {% endfor %}

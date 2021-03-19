@@ -1,7 +1,7 @@
 from pathlib import Path
 from os.path import join
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 SECRET_KEY = 'dw+#ep@eks&^zkia9jpsd%*pzd61%&8%25n3bwshx^+xsabkf4'
 
@@ -28,7 +28,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'project.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {

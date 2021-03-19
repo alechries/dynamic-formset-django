@@ -1,9 +1,18 @@
+footer {
+    position: fixed; /* Фиксированное положение */
+    left: 0; bottom: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    background: rgb(240,240,240,0.7); /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    width: 100%; /* Ширина слоя */
+}
+
 .content {
-    margin: 5em 20em !important;
+        margin: 3em 20% 8em 20% !important;
 }
 
 .card {
-    padding: 3em 6em; !important;
+    padding: 3em 10%; !important;
 }
 
 .field {
@@ -12,3 +21,10 @@
 .element-margin {
     margin: 2em 0;
 }
+
+.addition-form-title-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

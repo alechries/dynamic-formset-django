@@ -43,7 +43,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         {{ formset.management_form }}
                         {% for form in formset %}
                         <div class="addition-form-part element-margin">
-                            <h4>ADDITION {{ forloop.counter }}</h4>
+                            <div class="addition-form-title-line">
+                                <h4>ADDITION <b class="addition-counter">{{ forloop.counter }}</b></h4>
+                                <div class="btn btn-danger" id="addition-del">DEL</div>
+                            </div>
                             <div class="form-group">
                                 <div class="d-flex flex-column field">
                                     <label for="DescriptionInput">DESCRIPTION</label>
@@ -61,14 +64,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         {% endfor %}
                     </div>
                 </div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-info" id="add_more">ADD MORE ADDITION</button>
-                    <button type="submit" class="btn btn-success">SAVE ITEM AND ADDITIONS</button>
-                </div>
+
+                <footer>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-info" id="add_more">ADD MORE ADDITION</button>
+                        <button type="submit" class="btn btn-success">SAVE ITEM AND ADDITIONS</button>
+                    </div>
+                </footer>
             </form>
         </div><!-- /.card -->
     </div><!-- /.container-fluid -->
 </section><!-- /.content -->
+
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
@@ -78,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{% static 'js/adminlte.min.js' %}"></script>
 <!-- Clone More -->
-<script src="{% static 'js/clonemore.js' %}"></script>
+<script src="{% static 'js/dynamicforms.js' %}"></script>
 <script>
 $('#add_more').click(function() {
     cloneMore('.addition-form-part:last', 'addition');

@@ -6,12 +6,15 @@ from . import forms, models
 def example_view(request):
 
     item = models.Item()
+    addition_with_item_count = models.Addition.objects.filter(item=item).count()
     AdditionFormset = inlineformset_factory(
         parent_model=models.Item,
         model=models.Addition,
-        fields=('description', 'image')
+        fields=('description', 'image'),
+        min_num=addition_with_item_count,
+        max_num=addition_with_item_count,
     )
-
+    print(models.Addition.objects.filter(item=item).count())
     if request.method == "POST":
 
         item_form = forms.ItemForm(request.POST, request.FILES, prefix='item')

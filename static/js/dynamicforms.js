@@ -7,10 +7,11 @@ function delForm(btn, selector, type) {
 
         element = $(forms.get(i));
         element.find(':input').each(function() {
-            var name = $(this).attr('name', '-' + i + '-');
+
+            var name = $(this).attr('name', ).replace(/\d+/g,i);
             var id = 'id_' + name;
         });
-        element.find('.addition-counter').text(i);
+        element.find('.addition-counter').text(i+1);
     }
     return false;
 }

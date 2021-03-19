@@ -11,8 +11,7 @@ def example_view(request):
         parent_model=models.Item,
         model=models.Addition,
         fields=('description', 'image'),
-        min_num=addition_with_item_count,
-        max_num=addition_with_item_count,
+        max_num=addition_with_item_count if addition_with_item_count > 0 else 1,
     )
 
     if request.method == "POST":

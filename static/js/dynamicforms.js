@@ -1,24 +1,26 @@
-function delForm(btn, selector, type) {
-    $(btn).parents(selector).remove();
-    var forms = $(selector);
-    $('#id_' + type + '-TOTAL_FORMS').val(forms.length);
+function delForm(btn, prefix, form, counter) {
+    $(btn).parents(form).remove();
+    let forms = $(form);
+    $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
+
     for (var i=0, formCount=forms.length; i<formCount; i++) {
         element = $(forms.get(i));
         element.find(':input').each(function() {
-            var id_regex = new RegExp('(' + type + '-\\d+)');
-		    var replacement = type + '-' + i;
-		    var name = $(this).attr('name').replace(id_regex,replacement);
-		    var id = 'id_' + name;
+            let id_regex = new RegExp('(' + prefix + '-\\d+)');
+		    let replacement = prefix + '-' + i;
+		    let name = $(this).attr('name').replace(id_regex,replacement);
+		    let id = 'id_' + name;
              $(this).attr({'name': name, 'id': id}).val('');
         });
-        element.find('.addition-counter').text(i+1);
+        element.find(counter).text(i+1);
     }
     return false;
 }
 
-function addForm(selector, type) {
+function addForm(prefix, form, counter, deleter) {
+    let selector = form + ":last";
     let newElement = $(selector).clone(true);
-    let total = $('#id_' + type + '-TOTAL_FORMS').val();
+    let total = $('#id_' + prefix + '-TOTAL_FORMS').val();
 
     newElement.find(':input').each(function() {
         let name = $(this).attr('name').replace('-' + (total-1) + '-','-' + total + '-');
@@ -27,16 +29,8 @@ function addForm(selector, type) {
     });
 
     total++;
-    $('#id_' + type + '-TOTAL_FORMS').val(total);
-
-    newElement.find('.addition-counter').each(function() { $(this).text(total); });
-
-
-
-    newElement.find('.del-row').click(function() {
-        return delForm(this, '.addition-form-part', 'addition');
-    });
-
+    $('#id_' + prefix + '-TOTAL_FORMS').val(total);
+    if (counter) newElement.find(counter).each(function() { $(this).text(total); });
     $(selector).after(newElement);
 
     height = document.body.scrollHeight;

@@ -1,6 +1,6 @@
 function updateFormIndex(element, prefix, index) {
     let id_regex = new RegExp('(' + prefix + '-\\d+)');
-	let replacement = prefix + '-' + i;
+	let replacement = prefix + '-' + index;
 	let name = $(this).attr('name').replace(id_regex,replacement);
 	let id = 'id_' + name;
     $(this).attr({'name': name, 'id': id}).val('');

@@ -88,12 +88,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Clone More -->
 <script src="{% static 'js/dynamicforms.js' %}"></script>
 <script>
-$('#add-form').click(function() {
-    addForm('addition', '.addition-form-part', '.addition-counter');
-});
-$('.del-form').click(function() {
-    delForm(this, 'addition', '.addition-form-part', '.addition-counter');
-});
+let addition_prefix = 'addition';
+let addition_form = '.addition-form-part';
+let addition_counter = '.addition-counter';
+$('#add-form').click(function() { addForm(addition_prefix, addition_form, addition_counter); });
+$('.del-form').click(function() { delForm(this, addition_prefix, addition_form, addition_counter); });
 </script>
 </body>
 </html>

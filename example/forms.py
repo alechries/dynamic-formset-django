@@ -15,9 +15,28 @@ class ItemForm(forms.ModelForm):
         }
 
 
-class AdditionForm(forms.ModelForm):
+class AdditionAForm(forms.ModelForm):
     class Meta:
-        model = models.Addition
+        model = models.AdditionB
+        fields = ['id', 'description', 'image']
+        widgets = {
+            'id': forms.HiddenInput(),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter addition description',
+                'rows': '1',
+                'id': 'DescriptionInput',
+            }),
+            'image': forms.FileInput(attrs={
+                'class': 'form-control-file',
+                'id': 'ImageInput',
+            }),
+        }
+
+
+class AdditionBForm(forms.ModelForm):
+    class Meta:
+        model = models.AdditionB
         fields = ['id', 'description', 'image']
         widgets = {
             'id': forms.HiddenInput(),

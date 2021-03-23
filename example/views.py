@@ -6,10 +6,10 @@ from . import forms, models
 def example_view(request):
 
     item = models.Item()
-    addition_with_item_count = models.Addition.objects.filter(item=item).count()
+    addition_with_item_count = models.AdditionB.objects.filter(item=item).count()
     AdditionFormset = inlineformset_factory(
         parent_model=models.Item,
-        model=models.Addition,
+        model=models.AdditionB,
         fields=('description', 'image'),
         max_num=addition_with_item_count if addition_with_item_count > 0 else 1,
     )

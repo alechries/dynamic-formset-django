@@ -21,6 +21,7 @@ def example_view(request):
         max_num=addition_b_with_item_count if addition_b_with_item_count > 0 else 1,
     )
 
+    alerts = []
     if request.method == "POST":
 
         item_form = forms.ItemForm(request.POST, request.FILES, prefix='item')
@@ -40,7 +41,7 @@ def example_view(request):
                 addition.item = item
                 addition.save()
 
-        return redirect('example')
+            alerts = ['Формы сохранены успешно!', ]
 
     else:
 
@@ -48,10 +49,19 @@ def example_view(request):
         addition_a_formset = AdditionAFormset(instance=item, prefix='addition_a')
         addition_b_formset = AdditionBFormset(instance=item, prefix='addition_b')
 
-        return render(
-            request, 'example.html',
-            context={
-                'form': item_form,
-                'addition_a_formset': addition_a_formset,
-                'addition_b_formset': addition_b_formset,
-            })
+    log_item = models.Item.objects.order_by('id')[0]
+    log_addition_a = models.AdditionA.objects.filter(item=log_item)
+    log_addition_b = models.AdditionB.objects.filter(item=log_item)
+
+    print(log_item)
+    print(log_addition_a)
+    print(log_addition_b)
+
+    return render(
+        request, 'example.html',
+        context={
+            'form': item_form,
+            'addition_a_formset': addition_a_formset,
+            'addition_b_formset': addition_b_formset,
+            'alerts': alerts,
+        })

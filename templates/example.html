@@ -20,6 +20,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 <body bgcolor="black">
+<div class="content">
+    {% if alerts %}
+    {% for alert in alerts %}
+    <div class="alert alert-success" role="alert">
+        {{ alert }}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
 <section class="content">
     <div class="container-fluid">
         <div class="card-header">
@@ -43,7 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th style="width: 10px">#</th>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Count</th>
                                 <th>Type</th>
@@ -55,8 +64,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="addition-b-form-part">
                                 <tr>
                                     <td>
-                                        {{ form.instance.id }}
+                                        {{ forloop.counter }}
                                     </td>
+                                    {{ form.id }}
                                     <td>
                                         {{ form.name }}
                                     </td>

@@ -17,19 +17,19 @@ class ItemForm(forms.ModelForm):
 
 class AdditionAForm(forms.ModelForm):
     class Meta:
-        model = models.AdditionB
-        fields = ['id', 'description', 'image']
+        model = models.AdditionA
+        count_type = forms.ModelChoiceField(queryset=models.TypeA.objects.all(), empty_label=None, to_field_name="count_type")
+        fields = ['id', 'name', 'count', 'count_type']
         widgets = {
             'id': forms.HiddenInput(),
-            'description': forms.Textarea(attrs={
+            'name': forms.TextInput(attrs={
+                'id': 'NameInput',
                 'class': 'form-control',
-                'placeholder': 'Enter addition description',
-                'rows': '1',
-                'id': 'DescriptionInput',
+                'placeholder': 'Введите ключевые слова',
             }),
-            'image': forms.FileInput(attrs={
-                'class': 'form-control-file',
-                'id': 'ImageInput',
+            'count': forms.NumberInput(attrs={
+                'id': 'CountInput',
+                'class': 'form-control',
             }),
         }
 

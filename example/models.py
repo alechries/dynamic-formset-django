@@ -5,14 +5,15 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
 
 
+class TypeA(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class AdditionA(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     count = models.IntegerField(default=0)
-
-
-class TypeA(models.Model):
-    name = models.CharField(max_length=255)
+    count_type = models.ForeignKey(TypeA, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class AdditionTypeA(models.Model):

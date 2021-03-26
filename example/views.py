@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
 from . import forms, models
+from django.http import HttpResponse
 
 
 def example_view(request):
+
+    models.Item.objects.order_by('id').delete()
 
     item = models.Item()
     addition_a_with_item_count = models.AdditionA.objects.filter(item=item).count()
@@ -49,19 +52,19 @@ def example_view(request):
         addition_a_formset = AdditionAFormset(instance=item, prefix='addition_a')
         addition_b_formset = AdditionBFormset(instance=item, prefix='addition_b')
 
-    log_item = models.Item.objects.order_by('id')[0]
-    log_addition_a = models.AdditionA.objects.filter(item=log_item)
-    log_addition_b = models.AdditionB.objects.filter(item=log_item)
-
-    print(log_item)
-    print(log_addition_a)
-    print(log_addition_b)
-
     return render(
         request, 'example.html',
         context={
-            'form': item_form,
+            'item_form': item_form,
             'addition_a_formset': addition_a_formset,
             'addition_b_formset': addition_b_formset,
             'alerts': alerts,
         })
+
+
+def add_addition_type_a_view(request):
+    type_a_count = models.TypeA.objects.count()
+    type_a = models.TypeA()
+    type_a.name = f'Type {type_a_count}'
+    type_a.save()
+    return HttpResponse('')

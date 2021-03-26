@@ -42,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="form-group">
                         <div class="d-flex flex-column field">
                             <label for="NameInput">NAME</label>
-                            {{ form.name }}
+                            {{ item_form.name }}
                         </div>
                     </div>
                 </div>
@@ -115,6 +115,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <footer>
                     <div class="text-center">
+                        <button type="button" class="btn btn-secondary" id="add-type-a">ADD ADDITION A</button>
                         <button type="button" class="btn btn-info" id="add-a-form">ADD ADDITION A</button>
                         <button type="button" class="btn btn-info" id="add-b-form">ADD ADDITION B</button>
                         <button type="submit" class="btn btn-success">SAVE ITEM AND ADDITIONS</button>
@@ -135,6 +136,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{% static 'js/adminlte.min.js' %}"></script>
 <!-- Clone More -->
 <script src="{% static 'js/dynamicforms.js' %}"></script>
+
+<script src="{% static 'js/requestwithoutreload.js' %}"></script>
 <script>
 let addition_a_prefix = 'addition_a';
 let addition_a_form = '.addition-a-form-part';
@@ -146,6 +149,11 @@ $('#add-a-form').click(function() { addForm(addition_a_prefix, addition_a_form, 
 $('.del-a-form').click(function() { delForm(this, addition_a_prefix, addition_a_form, addition_a_counter); });
 $('#add-b-form').click(function() { addForm(addition_b_prefix, addition_b_form, addition_b_counter); });
 $('.del-b-form').click(function() { delForm(this, addition_b_prefix, addition_b_form, addition_b_counter); });
+
+let add_type_a_url = '{% url 'add-type-a' %}'
+token = $("input[name='csrfmiddlewaretoken']").val()
+data = {'csrfmiddlewaretoken':token}
+$('#add-type-a').click(function() { requestWithoutReload(add_type_a_url, data)})
 </script>
 </body>
 </html>

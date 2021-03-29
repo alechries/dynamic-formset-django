@@ -22,7 +22,12 @@ class ItemForm(forms.ModelForm):
 class AdditionAForm(forms.ModelForm):
     class Meta:
         model = models.AdditionA
-        count_type = forms.ModelChoiceField(queryset=models.TypeA.objects.all(), empty_label=None, to_field_name="count_type")
+        count_type = forms.ModelChoiceField(
+            queryset=models.TypeA.objects.all(),
+            empty_label=None,
+            to_field_name="count_type",
+
+        )
         fields = ['id', 'name', 'count', 'count_type']
         widgets = {
             'id': forms.HiddenInput(),
@@ -33,6 +38,9 @@ class AdditionAForm(forms.ModelForm):
             }),
             'count': forms.NumberInput(attrs={
                 'id': 'CountInput',
+                'class': 'form-control',
+            }),
+            'count_type': forms.TextInput(attrs={
                 'class': 'form-control',
             }),
         }

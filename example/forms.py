@@ -26,7 +26,6 @@ class AdditionAForm(forms.ModelForm):
             queryset=models.TypeA.objects.all(),
             empty_label=None,
             to_field_name="count_type",
-
         )
         fields = ['id', 'name', 'count', 'count_type']
         widgets = {

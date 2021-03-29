@@ -5,12 +5,16 @@ from . import models
 class ItemForm(forms.ModelForm):
     class Meta:
         model = models.Item
-        fields = ['name']
+        fields = ['name', 'count']
         widgets = {
              'name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter item name',
                 'id': 'NameInput',
+             }),
+             'count': forms.NumberInput(attrs={
+                'id': 'CountInput',
+                'class': 'form-control',
              }),
         }
 

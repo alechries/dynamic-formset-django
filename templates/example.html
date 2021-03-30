@@ -150,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Select2 connecting -->
 <script>
 $(document).ready(function() {
-    $('.select2').select2();
+    $('select').select2({ width: '120px'});
 });
 </script>
 <!-- Clone connecting -->
@@ -161,8 +161,16 @@ let addition_a_counter = '.addition-a-counter';
 let addition_b_prefix = 'addition_b';
 let addition_b_form = '.addition-b-form-part';
 let addition_b_counter = '.addition-b-counter';
+
+document.addEventListener('DOMContentLoaded',
+    function(){
+        addHiddenForm(addition_a_form);
+        addHiddenForm(addition_b_form);
+    }, false);
+
 $('#add-a-form').click(function() { addForm(addition_a_prefix, addition_a_form, addition_a_counter); });
 $('.del-a-form').click(function() { delForm(this, addition_a_prefix, addition_a_form, addition_a_counter); });
+
 $('#add-b-form').click(function() { addForm(addition_b_prefix, addition_b_form, addition_b_counter); });
 $('.del-b-form').click(function() { delForm(this, addition_b_prefix, addition_b_form, addition_b_counter); });
 
